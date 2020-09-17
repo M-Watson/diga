@@ -70,7 +70,8 @@ def write_idea(tag,idea):
         f.write('\n')
         f.close()
     return()
-
+def commit():
+    return()
 def clear_tmp(tmp_file):
     print('\nClearing Temp Files\n')
     with open(tmp_file,'w') as f:
