@@ -2,6 +2,8 @@ import os
 import time
 import datetime
 
+import requests
+
 
 looping = True
 
@@ -17,19 +19,29 @@ def prompt():
     print('''\nWhat would you like to do?
             \n\t[link] Write a link
             \n\t[idea] Write an idea
+            \n\t[article] Get an article
             \n\t[clear] Clear tmp links file
             \n\t[exit]
             ''')
     resp = input('\n-- ')
+
+    ######################### INPUT CONDITIONS ######################
     if resp.lower() == 'link':
         link = input('What link would you like to write? \n')
         tag = input('Tag?\t')
         write_link(tag,link)
         looping = True
+
     elif resp.lower() == 'idea':
         idea = input('What idea would you like to write? \n')
         tag = input('Tag?\t')
         write_idea(tag,idea)
+        looping = True
+
+    elif resp.lower() == 'article':
+        url = input("\n\t--What is the url?")
+        file_name = input("\n\t--What would you like to name the article?  \n\t")
+        get_article(url,file_name)
         looping = True
 
     elif resp.lower() == 'clear':
@@ -78,6 +90,14 @@ def clear_tmp(tmp_file):
         f.write('')
         f.close()
     return()
+
+def get_article(url,file_name):
+    article = requests.get(url)
+    with open(os.path.join('articles',file_name),'wb') as f:
+        f.write(article.content)
+        f.close()
+    return()
+
 
 while looping == True:
     looping = prompt()
