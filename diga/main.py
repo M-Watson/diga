@@ -70,7 +70,10 @@ def write_idea(tag,idea):
         f.write('\n')
         f.close()
     return()
+
+    
 def commit():
+    a = 2
     return()
 def clear_tmp(tmp_file):
     print('\nClearing Temp Files\n')
@@ -78,6 +81,8 @@ def clear_tmp(tmp_file):
         f.write('')
         f.close()
     return()
+
+
 
 while looping == True:
     looping = prompt()
