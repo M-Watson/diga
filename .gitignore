@@ -1,2 +1,4 @@
 *.diga
 *.html
+.venv/
+__pycache__/
