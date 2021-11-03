@@ -2,12 +2,16 @@ import os
 import time
 import datetime
 
+import sqlite3
+
 import requests
 '''
 activate_this_file = os.path.join('..','.venv','Scripts','activate.bat')
 
 exec(open(activate_this_file).read())
 '''
+
+
 looping = True
 
 
@@ -18,6 +22,24 @@ tmp_path = os.path.join(data_path,'tmp')
 tmp_link_storage_file = os.path.join(tmp_path,'tmp_links.diga')
 tmp_idea_storage_file = os.path.join(tmp_path,'tmp_ideas.diga')
 tmp_diary_storage_file = os.path.join(tmp_path,'tmp_diary.diga')
+
+db_path = os.path.join(data_path,'diga.db')
+
+def db_connect(db_path):
+    con = sqlite3.connect(db_path)
+    return(con)
+
+
+def create_table(table_name,keys,con):
+    # Create table
+    key_line = ''
+    key_index = 0
+    for key in keys:
+        if key_index == 0:
+            key_line += key
+        else:
+            key_line += f', {key}'
+    cur.execute(f'''CREATE TABLE {table_name} ({key_line})''')
 
 def prompt():
     print('''\nWhat would you like to do?

@@ -2,3 +2,4 @@
 *.html
 .venv/
 __pycache__/
+*.db
